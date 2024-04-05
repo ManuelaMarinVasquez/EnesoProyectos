@@ -1,14 +1,33 @@
 #include <gtk/gtk.h>
-
+static GtkCssProvider *cssProvider;
  void activate(GtkApplication *app, gpointer user_data) {
     // Creo la ventana principal
     GtkWidget *window = gtk_application_window_new(GTK_APPLICATION(app));
+    cssProvider = gtk_css_provider_new();
+    GtkWidget*label;
+    
+
+
+
     gtk_window_set_title(GTK_WINDOW(window), "Tablero Comunicacion");
     gtk_window_set_default_size(GTK_WINDOW(window), 400, 300); //tamaño
+    gtk_css_provider_load_from_path(cssProvider, "style.css"); // estilo 
+
+        gtk_style_context_add_provider_for_display(
+        gtk_widget_get_display(window),
+        GTK_STYLE_PROVIDER(cssProvider),
+        GTK_STYLE_PROVIDER_PRIORITY_USER);
+
 
     // Creo el contenedor principal como un GtkBox horizontal
-    GtkWidget *main_box = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 5);
+    GtkWidget *main_box = gtk_flow_box_new();
+    gtk_flow_box_set_homogeneous(GTK_FLOW_BOX(main_box), TRUE);
     gtk_window_set_child(GTK_WINDOW(window), main_box);
+
+    GtkWidget *box0 = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 5); // label de texto
+    gtk_flow_box_insert(GTK_FLOW_BOX(main_box), box0, -1); // Inserto box0 al final de main_box
+    label = gtk_label_new("Soy texto");
+    gtk_box_append(GTK_BOX(box0), label);
 
     // Cre0 el primer GtkBox vertical
     GtkWidget *box1 = gtk_box_new(GTK_ORIENTATION_VERTICAL, 5);
@@ -133,15 +152,13 @@
     gtk_box_append(GTK_BOX(main_box), box9);
 
    // Cargamos el estilo CSS desde el archivo
-GtkCssProvider *provider = gtk_css_provider_new();
-gtk_css_provider_load_from_path(provider, "style.css");
 
 // Aplicamos el estilo al contenedor principal
 /*GtkStyleContext *context = gtk_widget_get_style_context(GTK_WIDGET(main_box));
 gtk_style_context_add_provider_for_display(gdk_display_get_default(), GTK_STYLE_PROVIDER(provider), GTK_STYLE_PROVIDER_PRIORITY_APPLICATION);
 */
     // Liberamos el proveedor de estilo
-    g_object_unref(provider);
+
 
     // Mostramos la ventana principal
     gtk_window_present (GTK_WINDOW(window));
@@ -150,9 +167,9 @@ gtk_style_context_add_provider_for_display(gdk_display_get_default(), GTK_STYLE_
 }
 
 int main(int argc, char **argv) {
+
     GtkApplication *app;
     int status;
-
     app = gtk_application_new("org.gtk.example", G_APPLICATION_DEFAULT_FLAGS);
     g_signal_connect(app, "activate", G_CALLBACK(activate), NULL);
     status = g_application_run(G_APPLICATION(app), argc, argv);
