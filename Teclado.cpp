@@ -1,8 +1,4 @@
-<<<<<<< HEAD
-#include <gtk/gtk.h>
-=======
 #include <gtk/gtk.h> //CAMBIOS
->>>>>>> e0347cac23d94dc37fb4948b9abf023418c7ee21
 static GtkCssProvider *cssProvider;
  void activate(GtkApplication *app, gpointer user_data) {
     // Creo la ventana principal
@@ -10,12 +6,6 @@ static GtkCssProvider *cssProvider;
     cssProvider = gtk_css_provider_new();
     GtkWidget*label;
     
-
-<<<<<<< HEAD
-
-
-=======
->>>>>>> e0347cac23d94dc37fb4948b9abf023418c7ee21
     gtk_window_set_title(GTK_WINDOW(window), "Tablero Comunicacion");
     gtk_window_set_default_size(GTK_WINDOW(window), 400, 300); //tamaño
     gtk_css_provider_load_from_path(cssProvider, "style.css"); // estilo 
@@ -27,14 +17,16 @@ static GtkCssProvider *cssProvider;
 
 
     // Creo el contenedor principal como un GtkBox horizontal
-    GtkWidget *main_box = gtk_flow_box_new();
-    gtk_flow_box_set_homogeneous(GTK_FLOW_BOX(main_box), TRUE);
+    GtkWidget *main_box = gtk_box_new(GTK_ORIENTATION_HORIZONTAL,5);
+    gtk_box_set_homogeneous(GTK_BOX(main_box), TRUE);
     gtk_window_set_child(GTK_WINDOW(window), main_box);
 
     GtkWidget *box0 = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 5); // label de texto
-    gtk_flow_box_insert(GTK_FLOW_BOX(main_box), box0, -1); // Inserto box0 al final de main_box
     label = gtk_label_new("Soy texto");
     gtk_box_append(GTK_BOX(box0), label);
+    gtk_box_append(GTK_BOX(main_box), box0);
+
+    gtk_window_set_child(GTK_WINDOW(window), main_box);
 
     // Cre0 el primer GtkBox vertical
     GtkWidget *box1 = gtk_box_new(GTK_ORIENTATION_VERTICAL, 5);
@@ -158,19 +150,12 @@ static GtkCssProvider *cssProvider;
     // Agrego el  GtkBox al contenedor principal
     gtk_box_append(GTK_BOX(main_box), box9);
 
-   // Cargamos el estilo CSS desde el archivo
-
-// Aplicamos el estilo al contenedor principal
-/*GtkStyleContext *context = gtk_widget_get_style_context(GTK_WIDGET(main_box));
-gtk_style_context_add_provider_for_display(gdk_display_get_default(), GTK_STYLE_PROVIDER(provider), GTK_STYLE_PROVIDER_PRIORITY_APPLICATION);
-*/
-    // Liberamos el proveedor de estilo
+  
 
 
     // Mostramos la ventana principal
     gtk_window_present (GTK_WINDOW(window));
     gtk_box_set_homogeneous(GTK_BOX(main_box),TRUE);//con esto hago homogeneo los botones
-
 }
 
 int main(int argc, char **argv) {
