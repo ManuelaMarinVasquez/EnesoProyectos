@@ -1,0 +1,18 @@
+/* Estilo para el contenedor principal */
+#cajita {
+    background-color: #dd1f1f; /* Color de fondo gris claro */
+}
+
+/* Estilo para los botones */
+#buttonq {
+    background-color: #0cb1ce; /* Color de fondo gris claro */
+    color: #a3dd04; /* Color de texto negro */
+    border: none; /* Elimina el borde del botón */
+    padding: 10px 20px; /* Espaciado interior del botón */
+    margin: 5px; /* Margen entre botones */
+    font-size: 16px; /* Tamaño de la fuente */
+}
+
+button:hover {
+    background-color: #aaaaaa; /* Color de fondo gris más oscuro cuando se pasa el mouse sobre el botón */
+}
