@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 #include <gtk/gtk.h>
+=======
+#include <gtk/gtk.h> //CAMBIOS
+>>>>>>> e0347cac23d94dc37fb4948b9abf023418c7ee21
 static GtkCssProvider *cssProvider;
  void activate(GtkApplication *app, gpointer user_data) {
     // Creo la ventana principal
@@ -7,8 +11,11 @@ static GtkCssProvider *cssProvider;
     GtkWidget*label;
     
 
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> e0347cac23d94dc37fb4948b9abf023418c7ee21
     gtk_window_set_title(GTK_WINDOW(window), "Tablero Comunicacion");
     gtk_window_set_default_size(GTK_WINDOW(window), 400, 300); //tamaño
     gtk_css_provider_load_from_path(cssProvider, "style.css"); // estilo 
