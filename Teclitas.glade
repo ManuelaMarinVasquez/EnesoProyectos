@@ -5,10 +5,29 @@
   <object class="GtkWindow" id="ensayo">
     <property name="can-focus">False</property>
     <child>
-      <object class="GtkLabel" id="hola">
+      <object class="GtkBox">
         <property name="visible">True</property>
         <property name="can-focus">False</property>
-        <property name="label" translatable="yes">holaaaaaaaaaaaaaaa</property>
+        <property name="orientation">vertical</property>
+        <child>
+          <object class="GtkLabel">
+            <property name="visible">True</property>
+            <property name="can-focus">False</property>
+            <property name="label" translatable="yes">label</property>
+          </object>
+          
+        </child>
+        <child>
+          <object class="GtkLabel" id="a">
+            <property name="visible">True</property>
+            <property name="can-focus">False</property>
+            <property name="label" translatable="yes">label</property>
+          </object>
+      
+        </child>
+        <child>
+          <placeholder/>
+        </child>
       </object>
     </child>
   </object>

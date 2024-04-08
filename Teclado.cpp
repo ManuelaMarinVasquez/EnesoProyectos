@@ -12,6 +12,7 @@ static GtkCssProvider *cssProvider;
 
         gtk_style_context_add_provider_for_display(
         gtk_widget_get_display(window),
+        
         GTK_STYLE_PROVIDER(cssProvider),
         GTK_STYLE_PROVIDER_PRIORITY_USER);
 
